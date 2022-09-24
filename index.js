@@ -11,18 +11,21 @@ const client = new Client({
   ],
 });
 
-//ここに追加していく
+/**
+ * ここに追加していく
+ * ./module/内に機能をファイル分け
+ */
 
 client.login(process.env.DISCORD_TOKEN)
   .then(()=> console.info(`\x1b[34mINFO:ログインに成功しました`))
   .catch(()=> console.error(`\x1b[31mERROR:ログインに失敗しました`))
 
-process.on('uncaughtException',async(error) =>{
+process.on("uncaughtException",async(error) =>{
   console.error(`\x1b[31ERROR: ${error}`);
   return;
 });
 
-process.on('unhandledRejection',async(error) =>{
+process.on("unhandledRejection",async(error) =>{
   console.error(`\x1b[31mERROR: ${error}`);
   return;
 });
