@@ -11,21 +11,8 @@ const client = new Client({
   ],
 });
 
-/**
- * ここに追加していく
- * ./module/内に機能をファイル分け
- */
-
-fs.readdir(`./events/`, (err, files) =>{ 
-	if (err) return console.log(`An Error Occured while Loading Events. ${err.stack}`);
-	files.forEach((file) =>{
-		if(!file.endsWith(`.js`)) return;
-		const event = require(`./events/${file}`);
-		let eventName = file.split(`.`)[0];
-		console.log(`[Event Manager]: Loading Event ${eventName}`);
-		client.on(eventName, event.bind(null, client));
-	});
-});
+const events = require("./module/events");
+events(client);
 
 client.login(process.env.DISCORD_TOKEN)
   .then(()=> console.info(`\x1b[34mINFO:ログインに成功しました`))
