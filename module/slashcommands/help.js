@@ -1,4 +1,4 @@
-module.exports = async (interaction, client) => {
+module.exports = async (interaction) => {
   if (!interaction.isCommand()) return
   if (interaction.commandName === "help") {
     interaction.reply("テスト")
