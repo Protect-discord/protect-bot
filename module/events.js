@@ -1,3 +1,9 @@
+const { Client } = require("discord.js")
+
+/**
+ * イベント登録
+ * @param {Client} client 
+ */
 module.exports = async (client) => {
   const fs = require("fs")
 

@@ -1,3 +1,9 @@
+const { Client } = require("discord.js")
+
+/**
+ * コマンド登録
+ * @param {Client} client 
+ */
 module.exports = async (client) => {
   const package = require("../../package.json")
   require("dotenv").config()

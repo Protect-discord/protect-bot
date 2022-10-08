@@ -1,3 +1,9 @@
+const { Client } = require("discord.js")
+
+/**
+ * ステータス変更
+ * @param {Client} client 
+ */
 module.exports = async (client) => {
   const package = require("../../package.json")
 
