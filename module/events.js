@@ -17,31 +17,58 @@ module.exports = async (client) => {
   })
 
   client.on("interactionCreate", async (interaction) => {
-    if(!interaction.isCommand()) return
-    if (!interaction.guild)
-      return await interaction.reply({
-        embeds: [
-          {
-            author: {
-              name: "コマンドが実行できません",
-              icon_url: "https://taka.ml/images/error.jpg",
+    if (interaction.isContextMenu()) {
+      if (!interaction.guild)
+        return await interaction.reply({
+          embeds: [
+            {
+              author: {
+                name: "コマンドが実行できません",
+                icon_url: "https://taka.ml/images/error.jpg",
+              },
+              color: "RED",
+              description:
+                "BOTの操作はDMで実行することができません\nサーバー内で実行してください",
             },
-            color: "RED",
-            description:
-              "BOTの操作はDMで実行することができません\nサーバー内で実行してください",
-          },
-        ],
-        ephemeral: true,
+          ],
+          ephemeral: true,
+        })
+      fs.readdir("./module/contextmenu/", (err, files) => {
+        if (err || files) return
+        files.forEach((file) => {
+          if (!file.endsWith(`.js`)) return
+          const event = require(`./contextmenu/${file}`)
+          event(interaction, client)
+        })
       })
+      return
+    }
+    if (interaction.isCommand()) {
+      if (!interaction.guild)
+        return await interaction.reply({
+          embeds: [
+            {
+              author: {
+                name: "コマンドが実行できません",
+                icon_url: "https://taka.ml/images/error.jpg",
+              },
+              color: "RED",
+              description:
+                "BOTの操作はDMで実行することができません\nサーバー内で実行してください",
+            },
+          ],
+          ephemeral: true,
+        })
 
-    fs.readdir("./module/slashcommands/", (err, files) => {
-      if (err || files) return
-      files.forEach((file) => {
-        if (!file.endsWith(`.js`)) return
-        const event = require(`./slashcommands/${file}`)
-        event(interaction, client)
+      fs.readdir("./module/slashcommands/", (err, files) => {
+        if (err || files) return
+        files.forEach((file) => {
+          if (!file.endsWith(`.js`)) return
+          const event = require(`./slashcommands/${file}`)
+          event(interaction, client)
+        })
       })
-    })
-    return
+      return
+    }
   })
 }
