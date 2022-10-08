@@ -1,14 +1,10 @@
-const { CommandInteraction, Client } = require("discord.js")
-
 /**
  * ヘルプコマンド
- * @param {CommandInteraction} interaction 
- * @param {Client} client 
+ * @param {import('discord.js').CommandInteraction} interaction 
+ * @param {import('discord.js').Client} client 
  * @returns 
  */
 module.exports = async (interaction, client) => {
-  if (interaction.commandName === "help") {
-    interaction.reply("テスト")
-    //処理書いていく
+  if(interaction){
   }
 }
