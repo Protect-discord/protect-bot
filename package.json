@@ -8,6 +8,9 @@
     "lint": "./node_modules/.bin/eslint module",
     "format": "prettier --write module"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Protect-discord/protect-bot.git"
@@ -15,7 +18,7 @@
   "keywords": [
     "Protect"
   ],
-  "author": "",
+  "author": "Protect Discord Team",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Protect-discord/protect-bot/issues"
@@ -26,10 +29,10 @@
     "@discordjs/rest": "^0.5.0",
     "discord-api-types": "^0.35.0",
     "discord.js": "^13.11.0",
-    "dotenv": "^16.0.2"
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "eslint": "^8.24.0",
+    "eslint": "^8.25.0",
     "eslint-plugin-node": "^11.1.0",
     "prettier": "^2.7.1"
   }
