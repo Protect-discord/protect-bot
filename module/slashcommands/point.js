@@ -17,7 +17,7 @@ module.exports = async (interaction, client) => {
       timestamp: interaction.createdAt,
     })]
   });
-  config.server[interaction.options.getString('id')] = interaction.options.getInteger('point');
+  config.server[interaction.options.getString('id')].point = interaction.options.getInteger('point');
   interaction.followUp({
     embeds: [new MessageEmbed({
       title: '設定しました',
