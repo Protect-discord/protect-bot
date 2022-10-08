@@ -1,8 +1,6 @@
-const { Client } = require("discord.js")
-
 /**
  * コマンド登録
- * @param {Client} client 
+ * @param {import('discord.js').Client} client 
  */
 module.exports = async (client) => {
   const package = require("../../package.json")

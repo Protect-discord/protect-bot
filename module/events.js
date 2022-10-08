@@ -1,8 +1,6 @@
-const { Client } = require("discord.js")
-
 /**
  * イベント登録
- * @param {Client} client 
+ * @param {import('discord.js').Client} client 
  */
 module.exports = async (client) => {
   const fs = require("fs")
@@ -13,7 +11,7 @@ module.exports = async (client) => {
       files.forEach((file) => {
         if (!file.endsWith(`.js`)) return
         const event = require(`./ready/${file}`)
-        event(interaction, client)
+        event(client);
       })
     })
   })
