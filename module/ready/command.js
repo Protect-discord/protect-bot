@@ -2,10 +2,13 @@ module.exports = async (client) => {
   require("dotenv").config()
   const {
     SlashCommandBuilder,
-    ContextMenuCommandBuilder,
+    //  ContextMenuCommandBuilder,
   } = require("@discordjs/builders")
   const {REST} = require("@discordjs/rest")
-  const {Routes, ApplicationCommandType} = require("discord-api-types/v10")
+  const {
+    Routes,
+    //  ApplicationCommandType
+  } = require("discord-api-types/v10")
 
   const rest = new REST({version: "10"}).setToken(process.env.DISCORD_TOKEN)
 
