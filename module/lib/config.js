@@ -1,5 +1,12 @@
 const fs = require('node:fs');
-
+/**
+ * @typedef {Object} configData
+ * @prop {Object} server
+ * @prop {Object} user
+ */
+/**
+ * @type {configData}
+ */
 const data = {
     server: JSON.parse(fs.readFileSync(`../../data/server.json`)),
     user: JSON.parse(fs.readFileSync(`../../data/user.json`))
@@ -13,4 +20,7 @@ const handler = {
         return JSON.parse(fs.readFileSync(`../../data/${prop}.json`));
     }
 }
+/**
+ * @type {configData}
+ */
 module.exports = new Proxy(data, handler)
