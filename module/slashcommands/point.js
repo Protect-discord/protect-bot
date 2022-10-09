@@ -8,7 +8,7 @@ const config = require("../lib/config")
  * @param {import('discord.js').Client} client
  * @returns
  */
-module.exports = async (interaction, client) => {
+module.exports = async (interaction) => {
   interaction.deferReply({ephemeral: true})
   if (!(await isAdmin(interaction.member)))
     return interaction.followUp({
