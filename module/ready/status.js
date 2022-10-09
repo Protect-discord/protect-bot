@@ -1,6 +1,6 @@
 /**
  * ステータス変更
- * @param {import('discord.js').Client} client 
+ * @param {import('discord.js').Client} client
  */
 module.exports = async (client) => {
   const package = require("../../package.json")

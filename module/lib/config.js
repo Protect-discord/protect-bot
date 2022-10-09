@@ -1,4 +1,4 @@
-const fs = require('node:fs');
+const fs = require("node:fs")
 /**
  * @typedef {Object} configData
  * @prop {Object} server
@@ -8,17 +8,20 @@ const fs = require('node:fs');
  * @type {configData}
  */
 const data = {
-    server: JSON.parse(fs.readFileSync(`../../data/server.json`)),
-    user: JSON.parse(fs.readFileSync(`../../data/user.json`))
+  server: JSON.parse(fs.readFileSync(`../../data/server.json`)),
+  user: JSON.parse(fs.readFileSync(`../../data/user.json`)),
 }
 const handler = {
-    get: (_obj, prop)=>{
-        return JSON.parse(fs.readFileSync(`../../data/${prop}.json`));
-    },
-    set: (obj, prop)=>{
-        fs.writeFileSync(`../../data/${prop}.json`, JSON.stringify(obj[prop], null,'  '));
-        return JSON.parse(fs.readFileSync(`../../data/${prop}.json`));
-    }
+  get: (_obj, prop) => {
+    return JSON.parse(fs.readFileSync(`../../data/${prop}.json`))
+  },
+  set: (obj, prop) => {
+    fs.writeFileSync(
+      `../../data/${prop}.json`,
+      JSON.stringify(obj[prop], null, "  ")
+    )
+    return JSON.parse(fs.readFileSync(`../../data/${prop}.json`))
+  },
 }
 /**
  * @type {configData}
