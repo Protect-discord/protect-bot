@@ -1,3 +1,8 @@
+/**
+ * 報告コマンド
+ * @param {import('discord.js').CommandInteraction} interaction 
+ * @returns 
+ */
 module.exports = async (interaction) => {
   const {MessageActionRow, Modal, TextInputComponent} = require("discord.js")
   if (!interaction.isCommand()) return
