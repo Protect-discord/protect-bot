@@ -1,4 +1,4 @@
-const { protect_guild, admin_role } = require('../../config.json');
+const {protect_guild, admin_role} = require("../../config.json")
 /**
  * 管理者かどうかチェックする
  * @param {import("discord.js").User} user
