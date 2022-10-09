@@ -16,7 +16,7 @@ events(client);
 
 client.login(process.env.DISCORD_TOKEN)
   .then(()=> console.info(`\x1b[34mINFO:ログインに成功しました`))
-  .catch(()=> console.error(`\x1b[31mERROR:ログインに失敗しました`))
+  .catch((err)=> console.error(`\x1b[31mERROR:ログインに失敗しました\n${err}`))
 
 process.on("uncaughtException",async(error) =>{
   console.error(`\x1b[31ERROR: ${error}`);
