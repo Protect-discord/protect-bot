@@ -1,6 +1,6 @@
 /**
  * 報告コマンド
- * @param {import('discord.js').CommandInteraction} interaction
+ * @param {import('discord.js').MessageContextMenuInteraction} interaction
  * @returns
  */
 module.exports = async (interaction) => {
