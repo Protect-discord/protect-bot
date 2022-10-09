@@ -6,13 +6,10 @@ module.exports = async (client) => {
   require("dotenv").config()
   const {
     SlashCommandBuilder,
-    //  ContextMenuCommandBuilder,
+    ContextMenuCommandBuilder,
   } = require("@discordjs/builders")
   const {REST} = require("@discordjs/rest")
-  const {
-    Routes,
-    //  ApplicationCommandType
-  } = require("discord-api-types/v10")
+  const {Routes, ApplicationCommandType} = require("discord-api-types/v10")
 
   const rest = new REST({version: "10"}).setToken(process.env.DISCORD_TOKEN)
 
@@ -23,7 +20,9 @@ module.exports = async (client) => {
         .setName("help")
         .setDescription("BOTの使い方を表示します"),
       new SlashCommandBuilder().setName("report").setDescription("通報します"),
-      new ContextMenuCommandBuilder().setName("report"),
+      new ContextMenuCommandBuilder()
+        .setName("report")
+        .setType(ApplicationCommandType.Message),
       new SlashCommandBuilder()
         .setName("scan")
         .setDescription("サーバーをスキャンし安全を確認します"),
