@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint module",
-    "format": "prettier --write module"
+    "format": "prettier --write module",
+    "start": "node index.js"
   },
   "engines": {
     "node": "16.x"
@@ -35,5 +36,8 @@
     "eslint": "^8.25.0",
     "eslint-plugin-node": "^11.1.0",
     "prettier": "^2.7.1"
+  },
+  "engines": {
+    "node": ">16"
   }
 }
