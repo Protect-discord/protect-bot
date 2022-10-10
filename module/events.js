@@ -47,7 +47,7 @@ module.exports = async (client) => {
       files.forEach((file) => {
         if (!file.endsWith(`.js`)) return
         const event = require(`./interactions/${file}`)
-        event(client)
+        event(interaction, client)
       })
     })
   })
