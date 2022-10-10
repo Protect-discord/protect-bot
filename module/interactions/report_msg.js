@@ -13,7 +13,7 @@ module.exports = async (interaction, client) => {
     /**
      * @type {import('discord.js').Message}
      */
-    const msg = (
+    const msg = await (
       await client.channels.fetch(interaction.customId.split("_")[3])
     ).messages.fetch(interaction.customId.split("_")[2])
     /**
@@ -42,8 +42,8 @@ module.exports = async (interaction, client) => {
         },
         {
           author: {
-            name: msg.member.displayName,
-            iconURL: msg.member.displayAvatarURL,
+            name: msg.author.name,
+            iconURL: msg.author.avatarURL(),
           },
           description: msg.content,
           title: "このメッセージに移動",
