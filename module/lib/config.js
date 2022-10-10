@@ -11,19 +11,9 @@ const data = {
   server: JSON.parse(fs.readFileSync(`../../data/server.json`)),
   user: JSON.parse(fs.readFileSync(`../../data/user.json`)),
 }
-const handler = {
-  get: (_obj, prop) => {
-    return JSON.parse(fs.readFileSync(`../../data/${prop}.json`))
-  },
-  set: (obj, prop) => {
-    fs.writeFileSync(
-      `../../data/${prop}.json`,
-      JSON.stringify(obj[prop], null, "  ")
-    )
-    return JSON.parse(fs.readFileSync(`../../data/${prop}.json`))
-  },
+const writeConfig = () => {
+  fs.writeFileSync("data/server.json", JSON.stringify(data.server, null, "  "))
+  fs.writeFileSync("data/user.json", JSON.stringify(data.user, null, "  "))
 }
-/**
- * @type {configData}
- */
-module.exports = new Proxy(data, handler)
+
+module.exports = {config: data, writeConfig}

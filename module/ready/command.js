@@ -29,11 +29,19 @@ module.exports = async (client) => {
       new SlashCommandBuilder()
         .setName("point")
         .setDescription("ユーザーの評価を設定します")
-        .addStringOption(
+        .addStringOption((option) =>
           option
             .setName("id")
             .setDescription("変更対象のユーザー")
             .setRequired(true)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("point")
+            .setMaxValue(10)
+            .setMinValue(1)
+            .setRequired(true)
+            .setDescription("評価値")
         ),
     ],
   })

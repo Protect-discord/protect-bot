@@ -9,7 +9,7 @@ const config = require("../lib/config")
  * @returns
  */
 module.exports = async (interaction) => {
-  interaction.deferReply({ephemeral: true})
+  await interaction.deferReply({ephemeral: true})
   if (!(await isAdmin(interaction.member)))
     return interaction.followUp({
       embeds: [
@@ -20,8 +20,17 @@ module.exports = async (interaction) => {
         }),
       ],
     })
-  config.server[interaction.options.getString("id")].point =
-    interaction.options.getInteger("point")
+  if (config.config.user[interaction.options.getString("id")]) {
+    config.config.user[interaction.options.getString("id")].point =
+      interaction.options.getInteger("point")
+  } else {
+    config.config.user[interaction.options.getString("id")] = {
+      point: interaction.options.getInteger("point"),
+    }
+  }
+  config.writeConfig()
+
+  interaction.options.getInteger("point")
   interaction.followUp({
     embeds: [
       new MessageEmbed({

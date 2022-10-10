@@ -7,7 +7,7 @@ module.exports = async (client) => {
 
   client.once("ready", async (client) => {
     fs.readdir("./module/ready/", (err, files) => {
-      if (err || files) return
+      if (err || !files) return
       files.forEach((file) => {
         if (!file.endsWith(`.js`)) return
         const event = require(`./ready/${file}`)
@@ -32,21 +32,21 @@ module.exports = async (client) => {
         ],
         ephemeral: true,
       })
+    if (interaction.isContextMenu()) {
+      const event = require(`./contextmenu/${interaction.commandName}`)
+      return event(interaction, client)
+    }
 
-    fs.readdir("./module/contextmenu/", (err, files) => {
-      if (err || files) return
+    if (interaction.isCommand()) {
+      const event = require(`./slashcommands/${interaction.commandName}`)
+      return event(interaction, client)
+    }
+
+    fs.readdir("./module/interactions/", (err, files) => {
+      if (err || !files) return
       files.forEach((file) => {
         if (!file.endsWith(`.js`)) return
-        const event = require(`./contextmenu/${file}`)
-        event(interaction, client)
-      })
-    })
-
-    fs.readdir("./module/slashcommands/", (err, files) => {
-      if (err || files) return
-      files.forEach((file) => {
-        if (!file.endsWith(`.js`)) return
-        const event = require(`./slashcommands/${file}`)
+        const event = require(`./interactions/${file}`)
         event(interaction, client)
       })
     })

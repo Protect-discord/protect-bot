@@ -28,7 +28,7 @@
       "node/no-unsupported-features":"warn",
       "node/no-deprecated-api":"warn",
       "node/no-missing-require":"error",
-      "node/no-unpublished-require":"error",
+      "node/no-unpublished-require":"warn",
       "node/exports-style": ["error", "module.exports"]
     }
 }
