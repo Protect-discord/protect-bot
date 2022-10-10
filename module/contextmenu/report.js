@@ -4,21 +4,16 @@
  * @returns
  */
 module.exports = async (interaction) => {
-  const {
-    MessageActionRow,
-    Modal,
-    TextInputComponent,
-    MessageEmbed,
-  } = require("discord.js")
+  const {MessageActionRow, Modal, TextInputComponent} = require("discord.js")
   const captha = require("../lib/captcha")
-  interaction.deferReply({ephemeral: true, fetchReply: true})
-  if (await captha(interaction.followUp)) {
-    const err = new MessageEmbed()
-    err.setTitle("認証失敗")
-    err.setDescription("認証に失敗しました")
-    return interaction.editReply({embeds: [err]})
-  }
-  const report_modal = new Modal().setCustomId(`report`).setTitle("通報")
+  await interaction.deferReply({ephemeral: true, fetchReply: true})
+  const captha_res = await captha(interaction)
+  if (!captha_res.res) return
+  const report_modal = new Modal()
+    .setCustomId(
+      `report_msg_${interaction.targetMessage.id}_${interaction.targetMessage.channel.id}`
+    )
+    .setTitle("通報")
 
   const content = new TextInputComponent()
     .setCustomId("content")
@@ -30,5 +25,5 @@ module.exports = async (interaction) => {
 
   report_modal.addComponents(new MessageActionRow().addComponents(content))
 
-  await interaction.showModal(report_modal)
+  await captha_res.inter.showModal(report_modal)
 }

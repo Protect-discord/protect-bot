@@ -7,10 +7,20 @@
 module.exports = async (interaction, client) => {
   const {report_channel} = require("../../config.json")
   if (!interaction.isModalSubmit()) return
-  if (interaction.customId === "report") {
+  if (interaction.customId.startsWith("report_msg_")) {
     const content = await interaction.fields.getTextInputValue("content")
 
-    await client.channels.cache.get(report_channel).send({
+    /**
+     * @type {import('discord.js').Message}
+     */
+    const msg = (
+      await client.channels.fetch(interaction.customId.split("_")[3])
+    ).messages.fetch(interaction.customId.split("_")[2])
+    /**
+     * @type {import('discord.js').TextChannel}
+     */
+    const report_ch = await client.channels.cache.get(report_channel)
+    report_ch.send({
       embeds: [
         {
           color: "GREEN",
@@ -29,6 +39,16 @@ module.exports = async (interaction, client) => {
               "https://cdn.discordapp.com/embed/avatars/0.png",
           },
           timestamp: new Date(),
+        },
+        {
+          author: {
+            name: msg.member.displayName,
+            iconURL: msg.member.displayAvatarURL,
+          },
+          description: msg.content,
+          title: "このメッセージに移動",
+          url: msg.url,
+          timestamp: msg.createdAt,
         },
       ],
     })
