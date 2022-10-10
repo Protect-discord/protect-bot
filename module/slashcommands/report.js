@@ -4,11 +4,7 @@
  * @returns
  */
 module.exports = async (interaction) => {
-  const {
-    MessageActionRow,
-    Modal,
-    TextInputComponent,
-  } = require("discord.js")
+  const {MessageActionRow, Modal, TextInputComponent} = require("discord.js")
   const captha = require("../lib/captcha")
   const res = await captha(interaction)
   if (!res.res) return
