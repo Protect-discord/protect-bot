@@ -1,10 +1,9 @@
+const package = require("../../package.json")
 /**
  * ステータス変更
  * @param {import('discord.js').Client} client
  */
 module.exports = async (client) => {
-  const package = require("../../package.json")
-
   let stats = 0
   setInterval(() => {
     if (stats === 0) {
