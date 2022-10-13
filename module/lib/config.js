@@ -8,8 +8,8 @@ const fs = require("node:fs")
  * @type {configData}
  */
 const data = {
-  server: JSON.parse(fs.readFileSync(`../../data/server.json`)),
-  user: JSON.parse(fs.readFileSync(`../../data/user.json`)),
+  server: JSON.parse(fs.readFileSync(`${__dirname}/../../data/server.json`)),
+  user: JSON.parse(fs.readFileSync(`${__dirname}/../../data/user.json`)),
 }
 const writeConfig = () => {
   fs.writeFileSync("data/server.json", JSON.stringify(data.server, null, "  "))
