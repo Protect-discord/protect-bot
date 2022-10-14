@@ -13,11 +13,10 @@ module.exports = async (interaction) => {
   if (!(await isAdmin(interaction.member)))
     return interaction.followUp({
       embeds: [
-        new MessageEmbed({
-          title: ":x: 利用できません",
-          description: "このコマンドは管理者のみが実行できます",
-          timestamp: interaction.createdAt,
-        }),
+        new MessageEmbed()
+          .setTitle(":x: 利用できません")
+          .setDescription("このコマンドは管理者のみが実行できます")
+          .setTimestamp(interaction.createdAt),
       ],
     })
   if (config.config.user[interaction.options.getString("id")]) {
@@ -33,15 +32,16 @@ module.exports = async (interaction) => {
   interaction.options.getInteger("point")
   interaction.followUp({
     embeds: [
-      new MessageEmbed({
-        title: "設定しました",
-        description: `${Formatters.userMention(
-          interaction.options.getString("id")
-        )}の評価値を${Formatters.inlineCode(
-          interaction.options.getInteger("point")
-        )}に設定しました`,
-        timestamp: interaction.createdAt,
-      }),
+      new MessageEmbed()
+        .setTitle("設定しました")
+        .setDescription(
+          `${Formatters.userMention(
+            interaction.options.getString("id")
+          )}の評価値を${Formatters.inlineCode(
+            interaction.options.getInteger("point")
+          )}に設定しました`
+        )
+        .setTimestamp(interaction.createdAt),
     ],
   })
 }

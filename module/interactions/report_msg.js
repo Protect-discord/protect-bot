@@ -1,3 +1,4 @@
+const {report_channel} = require("../../config.json")
 /**
  * レポート
  * @param {import('discord.js').Interaction} interaction
@@ -5,7 +6,6 @@
  * @returns
  */
 module.exports = async (interaction, client) => {
-  const {report_channel} = require("../../config.json")
   if (!interaction.isModalSubmit()) return
   if (interaction.customId.startsWith("report_msg_")) {
     const content = await interaction.fields.getTextInputValue("content")
@@ -13,7 +13,7 @@ module.exports = async (interaction, client) => {
     /**
      * @type {import('discord.js').Message}
      */
-    const msg = (
+    const msg = await (
       await client.channels.fetch(interaction.customId.split("_")[3])
     ).messages.fetch(interaction.customId.split("_")[2])
     /**
@@ -42,8 +42,8 @@ module.exports = async (interaction, client) => {
         },
         {
           author: {
-            name: msg.member.displayName,
-            iconURL: msg.member.displayAvatarURL,
+            name: msg.author.name,
+            iconURL: msg.author.avatarURL(),
           },
           description: msg.content,
           title: "このメッセージに移動",

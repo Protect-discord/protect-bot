@@ -1,3 +1,4 @@
+const captha = require("../lib/captcha")
 /**
  * 報告コマンド
  * @param {import('discord.js').MessageContextMenuInteraction} interaction
@@ -5,7 +6,6 @@
  */
 module.exports = async (interaction) => {
   const {MessageActionRow, Modal, TextInputComponent} = require("discord.js")
-  const captha = require("../lib/captcha")
   await interaction.deferReply({ephemeral: true, fetchReply: true})
   const captha_res = await captha(interaction)
   if (!captha_res.res) return
