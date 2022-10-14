@@ -91,19 +91,19 @@ module.exports = async (interaction, client) => {
 
   // チェック
   if (every1.permissions.has(Permissions.FLAGS.MENTION_EVERYONE, true)) {
-    msgs[0] = "everyoneが全員にメンションできます. 嵐が発生する可能性があります"
+    msgs[0] = "everyoneが全員にメンションできます. 荒らしが発生する可能性があります"
   }
   if (every1.permissions.has(Permissions.FLAGS.MANAGE_GUILD, true)) {
     msgs[0] += "\neveryoneがサーバーの管理権限を持っています"
   }
   await status()
   if (adminNum > 5) {
-    msgs[1] = "管理者数が多すぎます. 5未満にすることを推奨します"
+    msgs[1] = "管理者数が多すぎます. 5人未満にすることを推奨します"
   }
   await status()
   if (bots * 0.015 >= 1) {
     msgs[2] =
-      "ボット数が多すぎます. 一つのボットが1.5%の問題を抱えるとして計算すると現在参加しているボットのみで100%を超えます"
+      "ボット数が多すぎます。 一つのボットが1.5%の問題を抱えるとして計算すると現在参加しているボットのみで100%を超えます"
   }
   await status()
   if (joinVerify === "NONE" || joinVerify === "LOW") {
