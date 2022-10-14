@@ -42,6 +42,53 @@ module.exports = async (client) => {
             .setMinValue(1)
             .setRequired(true)
             .setDescription("評価値")
+        )
+        .addStringOption((option) =>
+          option.setName("reason").setRequired(true).setDescription("理由")
+        )
+        .addStringOption((option) =>
+          option
+            .setName("class")
+            .setRequired(true)
+            .setDescription("クラス")
+            .setChoices([
+              {name: "A", value: "a"},
+              {name: "B", value: "b"},
+              {name: "C", value: "c"},
+              {name: "D", value: "d"},
+            ])
+        ),
+      new SlashCommandBuilder()
+        .setName("subscribe")
+        .addChannelOption((option) =>
+          option
+            .setName("channel")
+            .setDescription("通知が送信されるチャンネル")
+            .setRequired(true)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("warn")
+            .setDescription("警告(ログ)を開始する評価値")
+            .setRequired(true)
+            .setMaxValue(9)
+            .setMinValue(1)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("kick")
+            .setDescription("kickを開始する評価値")
+            .setRequired(true)
+            .setMaxValue(9)
+            .setMinValue(1)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("ban")
+            .setDescription("banを開始する評価値")
+            .setRequired(true)
+            .setMaxValue(9)
+            .setMinValue(1)
         ),
     ],
   })

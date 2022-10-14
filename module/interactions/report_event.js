@@ -1,3 +1,4 @@
+const {report_channel} = require("../../config.json")
 /**
  * レポート
  * @param {import('discord.js').Interaction} interaction
@@ -5,7 +6,6 @@
  * @returns
  */
 module.exports = async (interaction, client) => {
-  const {report_channel} = require("../../config.json")
   if (!interaction.isModalSubmit()) return
   if (interaction.customId === "report") {
     const content = await interaction.fields.getTextInputValue("content")
