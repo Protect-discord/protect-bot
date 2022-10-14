@@ -42,6 +42,16 @@ module.exports = async (client) => {
             .setMinValue(1)
             .setRequired(true)
             .setDescription("評価値")
+        )
+        .addStringOption((option) =>
+          option.setName("reason").setRequired(true).setDescription("理由")
+        )
+        .addStringOption((option) =>
+          option
+            .setName("class")
+            .setRequired(true)
+            .setDescription("クラス")
+            .setChoices(["A", "B", "C", "D"])
         ),
       new SlashCommandBuilder()
         .setName("subscribe")
