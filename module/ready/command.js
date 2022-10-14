@@ -51,7 +51,12 @@ module.exports = async (client) => {
             .setName("class")
             .setRequired(true)
             .setDescription("クラス")
-            .setChoices(["A", "B", "C", "D"])
+            .setChoices([
+              {name: "A", value: "a"},
+              {name: "B", value: "b"},
+              {name: "C", value: "c"},
+              {name: "D", value: "d"},
+            ])
         ),
       new SlashCommandBuilder()
         .setName("subscribe")
