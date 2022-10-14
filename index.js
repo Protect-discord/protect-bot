@@ -19,11 +19,11 @@ client.login(process.env.DISCORD_TOKEN)
   .catch((err)=> console.error(`\x1b[31mERROR:ログインに失敗しました\n${err}\x1b[m`))
 
 process.on("uncaughtException",async(error) =>{
-  console.error(`\x1b[31ERROR: ${error}\x1b[m`);
+  console.error(`\x1b[31ERROR: ${error.stack}\x1b[m`);
   return;
 });
 
 process.on("unhandledRejection",async(error) =>{
-  console.error(`\x1b[31mERROR: ${error}\x1b[m`);
+  console.error(`\x1b[31mERROR: ${error.stack ?? error}\x1b[m`);
   return;
 });
